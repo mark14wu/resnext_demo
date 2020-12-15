@@ -16,6 +16,7 @@
 
 DATA_DIR="/data/imagenet/demo"
 export RANK_SIZE=2
+export NCCL_SOCKET_IFNAME=ens11f0
 # PATH_CHECKPOINT=""
 # if [ $# == 2 ]
 # then
