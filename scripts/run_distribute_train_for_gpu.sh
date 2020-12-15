@@ -15,18 +15,19 @@
 # ============================================================================
 
 DATA_DIR="/data/imagenet/demo"
-export RANK_SIZE=8
+export RANK_SIZE=2
 # PATH_CHECKPOINT=""
 # if [ $# == 2 ]
 # then
 # 	PATH_CHECKPOINT=$2
 # fi
 
+
 mpirun --allow-run-as-root -n $RANK_SIZE --output-filename log_output --merge-stderr-to-stdout \
+    -H 192.168.1.49:1, 192.168.1.52:1 \
 	python train.py  \
-    -H 192.168.1.48:1, 192.168.1.52:2 \
     --is_distribute=1 \
     --platform="GPU" \
-    --per_batch_size=188 \
+    --per_batch_size=250 \
     --pretrained=$PATH_CHECKPOINT \
     --data_dir=$DATA_DIR > log.txt 2>&1 &
